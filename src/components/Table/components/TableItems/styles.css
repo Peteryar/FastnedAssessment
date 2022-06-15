@@ -1,16 +1,20 @@
-.table-item-con{
+.table-item-con {
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
     align-items: center;
     width: 100%;
+    border:1px solid rgb(212, 212, 212);
 }
-.table-item-con p, span{
-width: 16%;
-text-align: center;
+
+.table-item-con p, span {
+    width: 16%;
+    display: flex;
+    justify-content: center;
 }
-.table-item-con button{
-    width:50px;
-    height:30px;
+
+.table-item-con button {
+    width: 50px;
+    height: 30px;
     text-align: center;
-} 
+}

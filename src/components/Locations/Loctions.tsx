@@ -1,3 +1,4 @@
+import Button from '../Button/Button';
 import Table from '../Table/Table';
 import './styles.css';
 
@@ -6,7 +7,7 @@ function Locations() {
     <div className="locations-con">
       <section>
         <h3>Locations</h3>
-        <button> + Add Location</button>
+        <Button text="Add Location" />
       </section>
       <Table />
     </div>

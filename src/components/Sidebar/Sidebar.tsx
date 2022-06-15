@@ -1,13 +1,10 @@
 import { useState } from 'react';
-// import Item from '../Item/Item';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import NavItem from '../NavItem/NavItem';
-// import UserInfo from '../UserInfo/UserInfo';
-// import Button from './Button/Button';
 import './styles.css';
 
 function Sidebar({ showSidebar, closeSidebar }: Props) {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(0);
   // const [deviceWidth, setDeviceWith] = useState(window.innerWidth);
 
   const navigate = (path: number) => {
@@ -21,8 +18,8 @@ function Sidebar({ showSidebar, closeSidebar }: Props) {
   };
 
   const items = [
-    { name: 'Overview', icon: 'grid_view' },
-    { name: 'Policy', icon: 'policy' },
+    { name: 'Locations', icon: 'where_to_vote' },
+    { name: 'Chargers', icon: 'ev_charger' },
     { name: 'Reports', icon: 'bug_report' },
     { name: 'Company', icon: 'villa' },
     { name: 'User Account', icon: 'account_circle' },
