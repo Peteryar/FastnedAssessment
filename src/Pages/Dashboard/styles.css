@@ -1,0 +1,17 @@
+.dashboard-con {
+  display: flex;
+  height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+  background: #F4F5F9;
+}
+.dashboard-right {
+  width: calc(100% - 310px);
+  height: 100%;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 600px) {
+  .dashboard-right {
+  width: 100%;
+  }
+}

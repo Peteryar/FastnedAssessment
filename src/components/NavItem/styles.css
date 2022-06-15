@@ -1,0 +1,25 @@
+.item-con {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  cursor: pointer;
+}
+.item-con1 {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.item-con img {
+  margin-right: 25px;
+}
+
+.item-con,
+.item-con1 p {
+  font-family: 'Segoe UI';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  color: #a2a4b9;
+}

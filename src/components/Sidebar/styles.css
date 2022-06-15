@@ -1,0 +1,30 @@
+.sidebar-con {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+    height: 100vh;
+    justify-content: space-between;
+    background: #ffffff;
+    box-shadow: 10px 3px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 20px 0px 20px 20px;
+  }
+  
+  .sidebar-top {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+  }
+  .sidebar-center {
+    height: 70%;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .sidebar-con {
+     display:none;
+     position: fixed;
+     z-index: 1;
+    }
+  }
