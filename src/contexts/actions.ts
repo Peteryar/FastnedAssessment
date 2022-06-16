@@ -1,0 +1,6 @@
+const ACTIONS = {
+  ADD_LOCATION: 'ADD_LOCATION',
+  LOCATION: 'LOCATION'
+};
+
+export default ACTIONS;
