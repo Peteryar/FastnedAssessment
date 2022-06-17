@@ -1,14 +1,18 @@
 import './styles.css';
 
-function TableHead() {
-  const data = ['Location', 'Location No.', 'Chargers', 'Country', 'Last Updated', 'Actions'];
+function TableHead({ data, width }: Props) {
   return (
-    <div className="table-head-con">
+    <div style={{ width }} className="table-head-con">
       {data.map((item, i) => (
         <p key={i}>{item}</p>
       ))}
     </div>
   );
+}
+
+interface Props {
+  data: Array<string>;
+  width?: string;
 }
 
 export default TableHead;

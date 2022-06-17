@@ -1,0 +1,10 @@
+.location-con {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height:100%;
+}
+.location-button-con{
+    width: 76%;
+    justify-content: right;
+}

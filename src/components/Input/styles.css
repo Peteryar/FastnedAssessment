@@ -1,16 +1,40 @@
 .input-con {
     height: 40px;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     border: 1px solid rgba(220, 220, 220, 0.8);
     background-color: #fff;
     padding: 10px;
-    margin: 10px;
+    margin: 10px 0;
     box-sizing: border-box;
+    align-items: center;
 }
-.input-con input{
+
+.input-con input {
     border: none;
     height: 100%;
     width: 90%;
     outline: none;
+}
+
+.input-con select {
+    /* position: relative;
+    left:10%; */
+    width: 100%;
+    border: none;
+    height: 100%;
+    width: 90%;
+    outline: none;
+    -webkit-appearance: none;
+    min-width: 50px;
+    /* background-color: red; */
+}
+
+.input-label {
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 21px;
+    margin: 0;
 }

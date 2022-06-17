@@ -1,11 +1,15 @@
+import { LocationType } from '../../../../utils/types';
 import './styles.css';
 
-function TableItems({ locations }: Prop) {
+function TableItems({ items, width }: Prop) {
   return (
-    <div className="table-items-con">
-      {locations.map((item, i) => (
+    <div style={{ width }} className="table-items-con">
+      {items?.map((item, i) => (
         <Item location={item} key={i} />
       ))}
+      {items?.length == 0 && (
+        <p style={{ textAlign: 'center' }}>No Charger has been added to this location</p>
+      )}
     </div>
   );
 }
@@ -13,8 +17,8 @@ function TableItems({ locations }: Prop) {
 function Item({ location }: ItemProp) {
   return (
     <div className="table-item-con">
-      <p>{location.location}</p>
-      <p>{location.id}</p>
+      <p>{location.name}</p>
+      <p>{location.number}</p>
       <p>{location.chargers}</p>
       <p>{location.country}</p>
       <p>{location.lastUpdated}</p>
@@ -26,20 +30,21 @@ function Item({ location }: ItemProp) {
 }
 
 interface Prop {
-  locations: Array<Location>;
+  items: Array<LocationType>;
+  width?: string;
 }
 
 interface ItemProp {
-  location: Location;
+  location: LocationType;
 }
 
-interface Location {
-  location: string;
-  id: number;
-  noChargers: number;
-  country: string;
-  lastUpdated: string;
-  chargers: number;
-}
+// interface Location {
+//   location: string;
+//   id: number;
+//   noChargers: number;
+//   country: string;
+//   lastUpdated: string;
+//   chargers: number;
+// }
 
 export default TableItems;

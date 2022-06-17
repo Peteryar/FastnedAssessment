@@ -1,9 +1,9 @@
 import { MouseEventHandler } from 'react';
 import './styles.css';
 
-function Button({ text, handleClick, icon, width, height }: Prop) {
+function Button({ text, handleClick, icon, width, height, color }: Prop) {
   return (
-    <button style={{ width, height }} className="btn" onClick={handleClick}>
+    <button style={{ width, height, backgroundColor: color }} className="btn" onClick={handleClick}>
       {icon && <span className="material-symbols-outlined">{icon}</span>}
       <p>{text}</p>
     </button>
@@ -15,6 +15,7 @@ interface Prop {
   height?: number;
   icon?: string;
   text: string;
+  color?: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
 

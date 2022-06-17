@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import DashboardContext from '../../contexts/DashboardContext';
-import AddLocation from '../AddLocations/AddLocations';
+import Location from '../Location/Location';
 import Locations from '../Locations/Locations';
 import './styles.css';
 function Main() {
@@ -8,7 +8,7 @@ function Main() {
   return (
     <div className="main-con">
       {state.screen === 'locations' && <Locations />}
-      {state.screen === 'add_location' && <AddLocation />}
+      {state.screen === 'add_location' && <Location />}
     </div>
   );
 }
