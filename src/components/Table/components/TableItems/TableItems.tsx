@@ -1,11 +1,15 @@
-import { LocationType } from '../../../../utils/types';
+import { ChargerType, LocationType } from '../../../../utils/types';
 import './styles.css';
 
-function TableItems({ items, width }: Prop) {
+function TableItems({ chargers, width, locations }: Prop) {
+  const items = locations || chargers;
   return (
     <div style={{ width }} className="table-items-con">
-      {items?.map((item, i) => (
-        <Item location={item} key={i} />
+      {locations?.map((location, i) => (
+        <Item location={location} key={i} />
+      ))}
+      {chargers?.map((charger, i) => (
+        <Item1 charger={charger} key={i} />
       ))}
       {items?.length == 0 && (
         <p style={{ textAlign: 'center' }}>No Charger has been added to this location</p>
@@ -29,8 +33,29 @@ function Item({ location }: ItemProp) {
   );
 }
 
+function Item1({ charger }: Item1Prop) {
+  return (
+    <div className="table-item-con">
+      <p>{charger['Serial Number']}</p>
+      <p>{charger['Charger Type']}</p>
+      <p>{charger['Serial Number']}</p>
+      <p>{charger.Status}</p>
+      <p>{charger.lastUpdated || 'NIL'}</p>
+      <section>
+        <button>Delete</button>
+        <button>Edit</button>
+      </section>
+    </div>
+  );
+}
+
+interface Item1Prop {
+  charger: ChargerType;
+}
+
 interface Prop {
-  items: Array<LocationType>;
+  locations?: Array<LocationType>;
+  chargers?: Array<ChargerType>;
   width?: string;
 }
 

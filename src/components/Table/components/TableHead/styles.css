@@ -7,5 +7,6 @@
 }
 .table-head-con p{
     width:16%;
-    text-align: center;
+    padding-left: 10px;
+    box-sizing: border-box;
 }

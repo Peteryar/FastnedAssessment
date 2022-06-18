@@ -4,9 +4,11 @@ import Button from '../Button/Button';
 import './styles.css';
 import AddCharger from '../AddCharger/AddCharger';
 import { useState } from 'react';
+import { ChargerType } from '../../utils/types';
 
 function Location() {
-  const [showModal, setShowModal] = useState(true);
+  const [chargers, setChargers] = useState<Array<ChargerType>>([]);
+  const [showModal, setShowModal] = useState(false);
   const handleSubmit: React.MouseEventHandler<HTMLButtonElement> = () => {
     console.log('Adding location data....');
   };
@@ -15,10 +17,15 @@ function Location() {
     setShowModal(!showModal);
   };
 
+  const addCharger = (charger: ChargerType) => {
+    setChargers([...chargers, charger]);
+    setShowModal(false);
+  };
+
   return (
     <div className="location-con">
       <AddLocation showModal={toggleModal} />
-      <Chargers />
+      <Chargers chargers={chargers} />
       <span className="location-button-con">
         <Button
           icon="save"
@@ -28,7 +35,12 @@ function Location() {
           handleClick={handleSubmit}
         />
       </span>
-      {showModal && <AddCharger hideModal={toggleModal} />}
+      {showModal && (
+        <AddCharger
+          addCharger={(charger: ChargerType) => addCharger(charger)}
+          hideModal={toggleModal}
+        />
+      )}
     </div>
   );
 }

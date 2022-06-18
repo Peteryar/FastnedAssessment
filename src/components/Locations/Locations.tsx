@@ -42,7 +42,7 @@ function Locations() {
       </section>
       <Table>
         <TableHead data={headData} />
-        <TableItems items={items} />
+        <TableItems locations={items} />
       </Table>
     </div>
   );

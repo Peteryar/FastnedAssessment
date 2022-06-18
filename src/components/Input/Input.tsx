@@ -2,7 +2,6 @@ import { UseFormRegister, Path } from 'react-hook-form';
 import './styles.css';
 
 const TextInput = <TFormValues extends Record<string, unknown>>({
-  icon,
   register,
   required,
   label,
@@ -13,7 +12,6 @@ const TextInput = <TFormValues extends Record<string, unknown>>({
       <p className="input-label">{label}</p>
       <div className="input-con">
         <input placeholder={label} {...register(label, { required })} />
-        {icon && <span className="material-symbols-outlined">{icon}</span>}
       </div>
     </div>
   );
@@ -32,6 +30,7 @@ const SelectInput = <TFormValues extends Record<string, unknown>>({
       <p className="input-label">{label}</p>
       <div className="input-con">
         <select {...register(label, { required })} aria-label={label}>
+          <option>NONE</option>
           {options?.map((option, key) => (
             <option key={key}>{option}</option>
           ))}

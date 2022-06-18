@@ -20,6 +20,7 @@
 
 .add-charger-top span {
     width: 25px;
+    cursor: pointer;
 }
 
 .add-charger-mid {

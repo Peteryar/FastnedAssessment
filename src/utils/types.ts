@@ -17,18 +17,18 @@ interface LocationType {
   lastUpdated: string;
 }
 
+// interface ChargerType {
+//   id: number;
+//   type: 'HPC' | 'T52' | 'T53C';
+//   serialNumber: string;
+//   status: 'CONNECTED' | 'NOT_CONNECTED' | 'REMOVED';
+//   lastUpdated: string;
+// }
 interface ChargerType {
-  id: number;
-  type: 'HPC' | 'T52' | 'T53C';
-  serialNumber: string;
-  status: 'CONNECTED' | 'NOT_CONNECTED' | 'REMOVED';
-  lastUpdated: string;
-}
-interface ChargerInputType {
   Type: 'HPC' | 'T52' | 'T53C';
   Status: 'CONNECTED' | 'NOT_CONNECTED' | 'REMOVED';
   'Serial Number': number;
   [key: string]: string | number;
 }
 
-export type { LocationType, ChargerType, ChargerInputType, LocationInputType };
+export type { LocationType, ChargerType, LocationInputType };
