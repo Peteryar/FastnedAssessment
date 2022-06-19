@@ -6,6 +6,7 @@ function TableHead({ data, width }: Props) {
       {data.map((item, i) => (
         <p key={i}>{item}</p>
       ))}
+      <p className="table-head-action">Actions</p>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { ChargerType, LocationType } from '../../../../utils/types';
 import './styles.css';
 
@@ -19,6 +20,11 @@ function TableItems({ chargers, width, locations }: Prop) {
 }
 
 function Item({ location }: ItemProp) {
+  const { path } = useRouteMatch();
+  const history = useHistory();
+  const editBtnHandler = () => {
+    history.push(`${path}/location`);
+  };
   return (
     <div className="table-item-con">
       <p>{location.name}</p>
@@ -27,7 +33,7 @@ function Item({ location }: ItemProp) {
       <p>{location.country}</p>
       <p>{location.lastUpdated}</p>
       <span>
-        <button>Edit</button>
+        <button onClick={editBtnHandler}>Edit</button>
       </span>
     </div>
   );
@@ -42,8 +48,16 @@ function Item1({ charger }: Item1Prop) {
       <p>{charger.Status}</p>
       <p>{charger.lastUpdated || 'NIL'}</p>
       <section>
-        <button>Delete</button>
-        <button>Edit</button>
+        <button>
+          <span style={{ textAlign: 'center' }} className="material-symbols-outlined">
+            edit_note
+          </span>
+        </button>
+        <button>
+          <span style={{ color: 'red', textAlign: 'center' }} className="material-symbols-outlined">
+            delete
+          </span>
+        </button>
       </section>
     </div>
   );

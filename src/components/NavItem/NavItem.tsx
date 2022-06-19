@@ -1,13 +1,10 @@
 import './styles.css';
 import { ReactComponent as LogOutIcon } from '../../assets/log-out.svg';
+import { Link } from 'react-router-dom';
 
-function NavItem({ text, icon, navigate, index, active }: Props) {
-  const handleNavigate = () => {
-    navigate(index);
-  };
-
+function NavItem({ text, icon, path, active }: Props) {
   return (
-    <div onClick={handleNavigate} className={text === 'Log Out' ? 'item-con1' : 'item-con'}>
+    <Link to={path} className={text === 'Log Out' ? 'item-con1' : 'item-con'}>
       {text === 'Log Out' ? (
         <LogOutIcon style={{ marginRight: 15 }} />
       ) : (
@@ -18,7 +15,7 @@ function NavItem({ text, icon, navigate, index, active }: Props) {
         </span>
       )}
       <p style={{ color: active ? '#ffdd30' : undefined }}>{text}</p>
-    </div>
+    </Link>
   );
 }
 
@@ -28,6 +25,7 @@ interface Props {
   navigate: Function;
   index?: number;
   active?: boolean;
+  path: string;
 }
 
 export default NavItem;

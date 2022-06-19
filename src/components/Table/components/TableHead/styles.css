@@ -10,3 +10,8 @@
     padding-left: 10px;
     box-sizing: border-box;
 }
+.table-head-action{
+    display:flex;
+   justify-content: flex-end;
+   padding-right:10px;
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import NavItem from '../NavItem/NavItem';
 import './styles.css';
@@ -18,21 +19,22 @@ function Sidebar({ showSidebar, closeSidebar }: Props) {
   };
 
   const items = [
-    { name: 'Locations', icon: 'where_to_vote' },
-    { name: 'Chargers', icon: 'ev_charger' },
-    { name: 'Reports', icon: 'bug_report' },
-    { name: 'Company', icon: 'villa' },
-    { name: 'User Account', icon: 'account_circle' },
-    { name: 'History', icon: 'description' }
+    { name: 'Locations', icon: 'where_to_vote', path: '/locations' },
+    { name: 'Chargers', icon: 'ev_charger', path: '/chargers' },
+    { name: 'Reports', icon: 'bug_report', path: '/reports' },
+    { name: 'Company', icon: 'villa', path: '/company' },
+    { name: 'User Account', icon: 'account_circle', path: '/user' },
+    { name: 'History', icon: 'description', path: '/history' }
   ];
   return (
     <div style={{ display: showSidebar ? 'flex' : undefined }} className="sidebar-con">
       <div className="sidebar-top">
-        <Logo width="50%" height={100} />
-        {/* <UserInfo />
-        <Button /> */}
+        <Link className="logo" to="/">
+          <Logo width="50%" height={100} />
+        </Link>
         {items.map((item, i) => (
           <NavItem
+            path={item.path}
             active={active === i ? true : false}
             navigate={(path: number) => navigate(path)}
             key={i}
@@ -43,7 +45,7 @@ function Sidebar({ showSidebar, closeSidebar }: Props) {
         ))}
       </div>
       <div>
-        <NavItem text="Log Out" navigate={logout} />
+        <NavItem path="" text="Log Out" navigate={logout} />
       </div>
     </div>
   );

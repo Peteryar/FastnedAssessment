@@ -7,28 +7,3 @@
     position: relative;
     overflow: auto;
 }
-
-.main-banner-con {
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    /* background-color: red; */
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-
-.main-cards-con {
-    margin:0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    width: 90%;
-    /* background-color: red; */
-    justify-content: space-between;
-}
-
-@media screen and (max-width: 600px) {
-    .main-cards-con {
-        justify-content: center;
-    }
-}

@@ -1,6 +1,7 @@
-import { useContext } from 'react';
-import ACTIONS from '../../contexts/actions';
-import DashboardContext from '../../contexts/DashboardContext';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+// import { useContext } from 'react';
+// import ACTIONS from '../../contexts/actions';
+// import DashboardContext from '../../contexts/DashboardContext';
 import Button from '../Button/Button';
 import TableHead from '../Table/components/TableHead/TableHead';
 import TableItems from '../Table/components/TableItems/TableItems';
@@ -8,7 +9,9 @@ import Table from '../Table/Table';
 import './styles.css';
 
 function Locations() {
-  const headData = ['Location', 'Location No.', 'Chargers', 'Country', 'Last Updated', 'Actions'];
+  const { path } = useRouteMatch();
+  const history = useHistory();
+  const headData = ['Location', 'Location No.', 'Chargers', 'Country', 'Last Updated'];
 
   const items = [
     {
@@ -29,9 +32,9 @@ function Locations() {
     }
   ];
 
-  const { dispatch } = useContext(DashboardContext);
+  // const { dispatch } = useContext(DashboardContext);
   const handleSwitch = () => {
-    dispatch({ type: ACTIONS.ADD_LOCATION });
+    history.push(`${path}/add-location`);
   };
 
   return (

@@ -5,7 +5,7 @@ import TableItems from '../Table/components/TableItems/TableItems';
 import { ChargerType } from '../../utils/types';
 
 function Chargers({ chargers }: Props) {
-  const headData = ['id', 'type', 'Serial Number', 'Status', ' lastUpdated', 'Actions'];
+  const headData = ['id', 'type', 'Serial Number', 'Status', ' lastUpdated'];
   return (
     <ViewContainer title="Add Charger" icon="charger">
       <Table>
