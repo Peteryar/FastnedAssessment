@@ -3,14 +3,14 @@ import Header from '../../components/Header/Header';
 import Main from '../../components/Main/Main';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import './styles.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 // import Locations from '../../components/Locations/Locations';
 
 const routes = [
   {
     path: '/',
     exact: true,
-    main: () => <Main />
+    main: () => <Redirect to="/locations" />
   },
   {
     path: '/locations',

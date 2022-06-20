@@ -23,17 +23,17 @@ function Item({ location }: ItemProp) {
   const { path } = useRouteMatch();
   const history = useHistory();
   const editBtnHandler = () => {
-    history.push(`${path}/location`);
+    history.push({ pathname: `${path}/location`, state: { location } });
   };
   return (
-    <div className="table-item-con">
+    <div onClick={editBtnHandler} className="table-item-con">
       <p>{location.name}</p>
-      <p>{location.number}</p>
-      <p>{location.chargers}</p>
+      <p>{location.location}</p>
+      <p>{location?.chargers?.length}</p>
       <p>{location.country}</p>
       <p>{location.lastUpdated}</p>
       <span>
-        <button onClick={editBtnHandler}>Edit</button>
+        <button>Edit</button>
       </span>
     </div>
   );
@@ -42,10 +42,10 @@ function Item({ location }: ItemProp) {
 function Item1({ charger }: Item1Prop) {
   return (
     <div className="table-item-con">
-      <p>{charger['Serial Number']}</p>
-      <p>{charger['Charger Type']}</p>
-      <p>{charger['Serial Number']}</p>
-      <p>{charger.Status}</p>
+      <p>{charger.serialNumber}</p>
+      <p>{charger.type}</p>
+      <p>{charger.serialNumber}</p>
+      <p>{charger.status}</p>
       <p>{charger.lastUpdated || 'NIL'}</p>
       <section>
         <button>

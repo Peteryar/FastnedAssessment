@@ -32,7 +32,9 @@ const SelectInput = <TFormValues extends Record<string, unknown>>({
         <select {...register(label, { required })} aria-label={label}>
           <option>NONE</option>
           {options?.map((option, key) => (
-            <option key={key}>{option}</option>
+            <option value={option} key={key}>
+              {option}
+            </option>
           ))}
         </select>
         {icon && <span className="material-symbols-outlined">{icon}</span>}

@@ -3,32 +3,32 @@ interface LocationInputType {
   'Location No.': number;
   Country: string;
   City: string;
-  'Postal Code': number;
+  'Postal Code': string;
   [key: string]: string | number;
 }
 
 interface LocationType {
   name: string;
-  number: number;
+  location: number;
   country: string;
-  city?: string;
-  postalCode?: number;
-  chargers: number;
-  lastUpdated: string;
+  city: string;
+  postalCode: string;
+  chargers: Array<ChargerType>;
+  lastUpdated?: string;
 }
 
-// interface ChargerType {
-//   id: number;
-//   type: 'HPC' | 'T52' | 'T53C';
-//   serialNumber: string;
-//   status: 'CONNECTED' | 'NOT_CONNECTED' | 'REMOVED';
-//   lastUpdated: string;
-// }
-interface ChargerType {
+interface ChargerInputType {
   Type: 'HPC' | 'T52' | 'T53C';
+  'Serial Number': string;
   Status: 'CONNECTED' | 'NOT_CONNECTED' | 'REMOVED';
-  'Serial Number': number;
-  [key: string]: string | number;
+  [key: string]: string;
+}
+interface ChargerType {
+  id?: number;
+  type: string;
+  status: string;
+  serialNumber: string;
+  lastUpdated?: string;
 }
 
-export type { LocationType, ChargerType, LocationInputType };
+export type { LocationType, ChargerInputType, ChargerType, LocationInputType };

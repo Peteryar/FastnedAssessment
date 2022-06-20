@@ -1,5 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ChargerType } from '../../utils/types';
+import { transformChargerData } from '../../utils/transformData';
+import { ChargerInputType, ChargerType } from '../../utils/types';
 import Button from '../Button/Button';
 import { SelectInput, TextInput } from '../Input/Input';
 import Modal from '../Modal/Modal';
@@ -10,10 +11,12 @@ function AddCharger({ hideModal, addCharger }: Props) {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<ChargerType>();
-  const onSubmit: SubmitHandler<ChargerType> = (data) => {
-    console.log(data);
-    addCharger(data);
+  } = useForm<ChargerInputType>();
+  const onSubmit: SubmitHandler<ChargerInputType> = (data) => {
+    console.log('data', data);
+    const charger = transformChargerData(data);
+    console.log(charger);
+    addCharger(charger);
     console.log('errors--->', errors);
   };
   return (
@@ -26,7 +29,7 @@ function AddCharger({ hideModal, addCharger }: Props) {
           </span>
         </section>
         <form onSubmit={handleSubmit(onSubmit)} className="add-charger-mid">
-          <SelectInput<ChargerType>
+          <SelectInput<ChargerInputType>
             options={['CONNECTED', 'NOT_CONNECTED']}
             label="Status"
             register={register}
@@ -34,7 +37,7 @@ function AddCharger({ hideModal, addCharger }: Props) {
             width="30%"
             required={true}
           />
-          <SelectInput<ChargerType>
+          <SelectInput<ChargerInputType>
             options={['HPC', 'T52', 'T53C']}
             label="Charger Type"
             register={register}
@@ -42,7 +45,7 @@ function AddCharger({ hideModal, addCharger }: Props) {
             width="30%"
             required={true}
           />
-          <TextInput<ChargerType>
+          <TextInput<ChargerInputType>
             required={true}
             label="Serial Number"
             register={register}

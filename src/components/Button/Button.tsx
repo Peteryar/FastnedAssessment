@@ -16,7 +16,7 @@ interface Prop {
   icon?: string;
   text: string;
   color?: string;
-  handleClick?: MouseEventHandler<HTMLButtonElement>;
+  handleClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 export default Button;
