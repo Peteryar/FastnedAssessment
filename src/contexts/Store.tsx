@@ -12,17 +12,26 @@ interface InitialState {
 }
 
 const reducer = (state: InitialState, action: Actions) => {
+  const getIndex = () => state.locations.findIndex((item) => item.id == action.payload.id);
   switch (action.type) {
     case ACTIONS.ADD_LOCATION:
       return { locations: [...state.locations, action.payload] };
-    case ACTIONS.EDIT_LOCATION:
+    case ACTIONS.EDIT_LOCATION: {
+      let index = getIndex();
+      state.locations[index] = { ...action.payload };
+      return state;
+    }
+    case ACTIONS.DELETE: {
+      state.locations = state.locations.filter((location) => location.id !== action.payload.id);
+      return state;
+    }
     default:
       return state;
   }
 };
 
 interface Actions {
-  type: 'ADD_LOCATION' | 'LOCATION';
+  type: string;
   payload: LocationType;
 }
 

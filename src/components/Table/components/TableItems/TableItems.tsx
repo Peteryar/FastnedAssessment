@@ -1,20 +1,13 @@
+import { MouseEventHandler, ReactNode } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { ChargerType, LocationType } from '../../../../utils/types';
+import Icon from '../../../Icon/Icon';
 import './styles.css';
 
-function TableItems({ chargers, width, locations }: Prop) {
-  const items = locations || chargers;
+function TableItems({ width, children }: Prop) {
   return (
     <div style={{ width }} className="table-items-con">
-      {locations?.map((location, i) => (
-        <Item location={location} key={i} />
-      ))}
-      {chargers?.map((charger, i) => (
-        <Item1 charger={charger} key={i} />
-      ))}
-      {items?.length == 0 && (
-        <p style={{ textAlign: 'center' }}>No Charger has been added to this location</p>
-      )}
+      {children}
     </div>
   );
 }
@@ -22,8 +15,9 @@ function TableItems({ chargers, width, locations }: Prop) {
 function Item({ location }: ItemProp) {
   const { path } = useRouteMatch();
   const history = useHistory();
+  console.log('item---> rendering.....');
   const editBtnHandler = () => {
-    history.push({ pathname: `${path}/location`, state: { location } });
+    history.push({ pathname: `${path}/location`, state: { location, from: 'Edit_View_Screen' } });
   };
   return (
     <div onClick={editBtnHandler} className="table-item-con">
@@ -39,7 +33,8 @@ function Item({ location }: ItemProp) {
   );
 }
 
-function Item1({ charger }: Item1Prop) {
+function Item1({ charger, removeCharger, editCharger }: Item1Prop) {
+  console.log('Item 1 rendering...');
   return (
     <div className="table-item-con">
       <p>{charger.serialNumber}</p>
@@ -48,15 +43,11 @@ function Item1({ charger }: Item1Prop) {
       <p>{charger.status}</p>
       <p>{charger.lastUpdated || 'NIL'}</p>
       <section>
-        <button>
-          <span style={{ textAlign: 'center' }} className="material-symbols-outlined">
-            edit_note
-          </span>
+        <button onClick={editCharger}>
+          <Icon name="edit_note" />
         </button>
-        <button>
-          <span style={{ color: 'red', textAlign: 'center' }} className="material-symbols-outlined">
-            delete
-          </span>
+        <button onClick={removeCharger}>
+          <Icon color="red" name="delete" />
         </button>
       </section>
     </div>
@@ -65,11 +56,12 @@ function Item1({ charger }: Item1Prop) {
 
 interface Item1Prop {
   charger: ChargerType;
+  removeCharger: MouseEventHandler;
+  editCharger: MouseEventHandler;
 }
 
 interface Prop {
-  locations?: Array<LocationType>;
-  chargers?: Array<ChargerType>;
+  children: ReactNode;
   width?: string;
 }
 
@@ -77,13 +69,4 @@ interface ItemProp {
   location: LocationType;
 }
 
-// interface Location {
-//   location: string;
-//   id: number;
-//   noChargers: number;
-//   country: string;
-//   lastUpdated: string;
-//   chargers: number;
-// }
-
-export default TableItems;
+export { TableItems, Item, Item1 };

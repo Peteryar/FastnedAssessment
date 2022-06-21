@@ -1,7 +1,8 @@
-import { MouseEventHandler } from 'react';
+import { memo, MouseEventHandler } from 'react';
 import './styles.css';
 
 function Button({ text, handleClick, icon, width, height, color }: Prop) {
+  console.log('button rendering...', text);
   return (
     <button style={{ width, height, backgroundColor: color }} className="btn" onClick={handleClick}>
       {icon && <span className="material-symbols-outlined">{icon}</span>}
@@ -19,4 +20,4 @@ interface Prop {
   handleClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-export default Button;
+export default memo(Button);

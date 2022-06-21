@@ -1,36 +1,55 @@
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { transformChargerData } from '../../utils/transformData';
 import { ChargerInputType, ChargerType } from '../../utils/types';
 import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 import { SelectInput, TextInput } from '../Input/Input';
 import Modal from '../Modal/Modal';
 import './styles.css';
 
-function AddCharger({ hideModal, addCharger }: Props) {
+function AddCharger({ hideModal, addCharger, charger, updateCharger }: Props) {
+  const [compType, setCompType] = useState('');
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    reset
+    // formState: { errors }
   } = useForm<ChargerInputType>();
+
+  useEffect(() => {
+    if (charger?.id) {
+      setCompType('Edit');
+    } else {
+      setCompType('Add');
+    }
+    reset({
+      'Serial Number': charger?.serialNumber,
+      Status: charger?.status,
+      'Charger Type': charger?.type
+    });
+  }, []);
+
   const onSubmit: SubmitHandler<ChargerInputType> = (data) => {
-    console.log('data', data);
+    // console.log('charger----->', data);
     const charger = transformChargerData(data);
-    console.log(charger);
-    addCharger(charger);
-    console.log('errors--->', errors);
+    if (compType === 'Edit') {
+      updateCharger(charger);
+    } else {
+      addCharger(charger);
+    }
   };
+
   return (
     <Modal>
       <div className="add-charger-con">
         <section className="add-charger-top">
           <h1>Add Charger</h1>
-          <span onClick={hideModal} className="material-symbols-outlined">
-            close
-          </span>
+          <Icon name="close" handleClick={hideModal} />
         </section>
         <form onSubmit={handleSubmit(onSubmit)} className="add-charger-mid">
           <SelectInput<ChargerInputType>
-            options={['CONNECTED', 'NOT_CONNECTED']}
+            options={['CONNECTED', 'NOT_CONNECTED', 'REMOVED']}
             label="Status"
             register={register}
             icon="arrow_drop_down"
@@ -64,6 +83,8 @@ function AddCharger({ hideModal, addCharger }: Props) {
 interface Props {
   hideModal: React.MouseEventHandler<HTMLSpanElement>;
   addCharger: (charger: ChargerType) => void;
+  charger?: ChargerType;
+  updateCharger: Function;
 }
 
 export default AddCharger;

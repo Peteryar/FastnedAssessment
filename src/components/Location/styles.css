@@ -9,5 +9,5 @@
 .location-button-con{
     display: flex;
     width: 90.25%;
-    justify-content: right;
+    justify-content: space-between;
 }

@@ -1,12 +1,24 @@
-import { memo } from 'react';
-import { UseFormRegister } from 'react-hook-form';
+import { memo, useEffect, useState } from 'react';
+import { UseFormRegister, UseFormReset } from 'react-hook-form';
 import { LocationInputType, LocationType } from '../../utils/types';
 import Button from '../Button/Button';
 import ViewContainer from '../Container/ViewContainer';
 import { SelectInput, TextInput } from '../Input/Input';
 import './styles.css';
 
-function AddLocation({ showModal, register, location }: Props<LocationInputType>) {
+function AddLocation({ showModal, location, register, reset }: Props<LocationInputType>) {
+  const [, rerender] = useState(false);
+  useEffect(() => {
+    console.log('Add Locatin Component rerendering...');
+    rerender(true);
+    reset({
+      Name: location.name,
+      City: location.city,
+      'Location No.': location.location,
+      'Postal Code': location.postalCode,
+      Country: location.country
+    });
+  }, []);
   return (
     <ViewContainer
       icon={location.name ? 'pin_drop' : 'Add'}
@@ -35,9 +47,9 @@ function AddLocation({ showModal, register, location }: Props<LocationInputType>
 
 interface Props<TFormValues> {
   showModal: React.MouseEventHandler<HTMLButtonElement>;
-  updateOrAddLocation: (val: LocationType) => void;
   register: UseFormRegister<TFormValues>;
   location: LocationType;
+  reset: UseFormReset<LocationInputType>;
 }
 
 export default memo(AddLocation);

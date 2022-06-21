@@ -6,7 +6,6 @@ import './styles.css';
 
 function Sidebar({ showSidebar, closeSidebar }: Props) {
   const [active, setActive] = useState(0);
-  // const [deviceWidth, setDeviceWith] = useState(window.innerWidth);
 
   const navigate = (path: number) => {
     setActive(path);

@@ -1,9 +1,9 @@
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import Store from '../../contexts/Store';
 import Button from '../Button/Button';
 import TableHead from '../Table/components/TableHead/TableHead';
-import TableItems from '../Table/components/TableItems/TableItems';
+import { TableItems, Item } from '../Table/components/TableItems/TableItems';
 import Table from '../Table/Table';
 import './styles.css';
 
@@ -14,13 +14,10 @@ function Locations() {
 
   const { state } = useContext(Store);
   const handleSwitch = () => {
-    history.push(`${path}/add-location`);
+    history.push({ pathname: `${path}/add-location`, state: { from: 'Add_Location' } });
   };
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
+  console.log('I rendered....');
   return (
     <div className="locations-con">
       <section>
@@ -29,7 +26,13 @@ function Locations() {
       </section>
       <Table>
         <TableHead data={headData} />
-        <TableItems locations={state.locations} />
+        <TableItems>
+          {state.locations.length > 0 ? (
+            state.locations.map((location, i) => <Item key={i} location={location} />)
+          ) : (
+            <p style={{ textAlign: 'center' }}>No Location has been added to the system</p>
+          )}
+        </TableItems>
       </Table>
     </div>
   );

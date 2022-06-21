@@ -1,4 +1,5 @@
 interface LocationInputType {
+  id: number;
   Name: string;
   'Location No.': number;
   Country: string;
@@ -8,6 +9,7 @@ interface LocationInputType {
 }
 
 interface LocationType {
+  id?: number;
   name: string;
   location: number;
   country: string;
@@ -18,15 +20,16 @@ interface LocationType {
 }
 
 interface ChargerInputType {
-  Type: 'HPC' | 'T52' | 'T53C';
+  'Charger Type': 'HPC' | 'T52' | 'T53C';
   'Serial Number': string;
   Status: 'CONNECTED' | 'NOT_CONNECTED' | 'REMOVED';
   [key: string]: string;
 }
+
 interface ChargerType {
   id?: number;
-  type: string;
-  status: string;
+  type: 'HPC' | 'T52' | 'T53C';
+  status: 'CONNECTED' | 'NOT_CONNECTED' | 'REMOVED';
   serialNumber: string;
   lastUpdated?: string;
 }
