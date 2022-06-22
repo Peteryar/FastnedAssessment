@@ -37,7 +37,7 @@ function Item1({ charger, removeCharger, editCharger }: Item1Prop) {
   console.log('Item 1 rendering...');
   return (
     <div className="table-item-con">
-      <p>{charger.serialNumber}</p>
+      <p>{charger.id}</p>
       <p>{charger.type}</p>
       <p>{charger.serialNumber}</p>
       <p>{charger.status}</p>

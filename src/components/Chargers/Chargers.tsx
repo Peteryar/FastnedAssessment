@@ -3,14 +3,15 @@ import Table from '../Table/Table';
 import TableHead from '../Table/components/TableHead/TableHead';
 import { TableItems, Item1 } from '../Table/components/TableItems/TableItems';
 import { ChargerType } from '../../utils/types';
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { isEqual } from 'lodash';
 
 function Chargers({ chargers, removeCharger, editCharger, showModal }: Props) {
   const headData = ['id', 'type', 'Serial Number', 'Status', ' lastUpdated'];
   console.log('chargers rendering...');
+  useEffect(() => console.log('chargers----->', chargers), [chargers]);
   const handleEditCharger = (charger: ChargerType) => {
-    console.log('charger', charger);
+    console.log('charger------>', charger);
     editCharger(charger);
     showModal();
   };
@@ -44,4 +45,7 @@ interface Props {
   showModal: Function;
 }
 
-export default memo(Chargers, isEqual);
+// eslint-disable-next-line react/display-name
+export default memo(Chargers, (prevProps: Readonly<Props>, nextProps: Readonly<Props>) =>
+  isEqual(prevProps, nextProps)
+);

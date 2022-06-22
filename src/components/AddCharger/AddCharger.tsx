@@ -9,7 +9,7 @@ import Modal from '../Modal/Modal';
 import './styles.css';
 
 function AddCharger({ hideModal, addCharger, charger, updateCharger }: Props) {
-  const [compType, setCompType] = useState('');
+  const [compType, setCompType] = useState('Add');
   const {
     register,
     handleSubmit,
@@ -31,12 +31,13 @@ function AddCharger({ hideModal, addCharger, charger, updateCharger }: Props) {
   }, []);
 
   const onSubmit: SubmitHandler<ChargerInputType> = (data) => {
-    // console.log('charger----->', data);
-    const charger = transformChargerData(data);
+    const transformed = transformChargerData(data);
     if (compType === 'Edit') {
-      updateCharger(charger);
+      console.log('submitting edit');
+      updateCharger({ ...transformed, id: charger?.id });
     } else {
-      addCharger(charger);
+      console.log('adding charger');
+      addCharger(transformed);
     }
   };
 
@@ -44,7 +45,7 @@ function AddCharger({ hideModal, addCharger, charger, updateCharger }: Props) {
     <Modal>
       <div className="add-charger-con">
         <section className="add-charger-top">
-          <h1>Add Charger</h1>
+          {compType === 'Add' ? <h1>Add Charger</h1> : <h1>Edit Charger</h1>}
           <Icon name="close" handleClick={hideModal} />
         </section>
         <form onSubmit={handleSubmit(onSubmit)} className="add-charger-mid">

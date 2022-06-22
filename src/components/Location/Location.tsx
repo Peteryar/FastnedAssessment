@@ -34,6 +34,7 @@ function Location() {
   } = useForm<LocationInputType>();
 
   const onSubmit: SubmitHandler<LocationInputType> = (data) => {
+    console.log('chargers----->', chargers);
     const transformed = { id: location.id, ...transformLocationData(data) };
     if (state.from == 'Edit_View_Screen') {
       dispatch({ type: ACTIONS.EDIT_LOCATION, payload: { ...transformed, chargers } });
@@ -44,21 +45,25 @@ function Location() {
   };
 
   const toggleModal = useCallback(() => {
+    if (showModal) editCharger(undefined);
     setShowModal(!showModal);
   }, [showModal]);
 
   const addCharger = (charger: ChargerType) => {
+    console.log('adding charger----->', charger);
     setChargers([...chargers, charger]);
     setShowModal(false);
   };
 
-  const updateCharger = useCallback(
-    (charger: ChargerType) => {
-      const index = chargers.findIndex((ch) => ch.id === charger.id);
-      chargers[index] = charger;
-    },
-    [chargers]
-  );
+  const setEdittingCharger = useCallback((charger: ChargerType) => editCharger(charger), []);
+
+  const updateCharger = (charger: ChargerType) => {
+    const index = chargers.findIndex((ch) => ch.id === charger.id);
+    console.log('charger to update...', chargers[index]);
+    chargers[index] = charger;
+    setChargers([...chargers]);
+    setShowModal(false);
+  };
 
   const removeCharger = useCallback(
     (id: number) => {
@@ -76,8 +81,8 @@ function Location() {
     <div className="location-con">
       <AddLocation reset={reset} register={register} showModal={toggleModal} location={location} />
       <Chargers
-        showModal={toggleModal}
-        editCharger={useCallback((charger: ChargerType) => editCharger(charger), [])}
+        showModal={useCallback(() => setShowModal(!showModal), [])}
+        editCharger={setEdittingCharger}
         chargers={chargers}
         removeCharger={removeCharger}
       />
@@ -99,7 +104,7 @@ function Location() {
           width={150}
           height={30}
           text="Save Location"
-          handleClick={useCallback(handleSubmit(onSubmit), [])}
+          handleClick={handleSubmit(onSubmit)}
         />
       </span>
       {showModal && (

@@ -15,6 +15,7 @@ const reducer = (state: InitialState, action: Actions) => {
   const getIndex = () => state.locations.findIndex((item) => item.id == action.payload.id);
   switch (action.type) {
     case ACTIONS.ADD_LOCATION:
+      console.log('action.payload---->', action.payload);
       return { locations: [...state.locations, action.payload] };
     case ACTIONS.EDIT_LOCATION: {
       let index = getIndex();
