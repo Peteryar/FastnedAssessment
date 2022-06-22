@@ -1,10 +1,12 @@
 import './styles.css';
 import { ReactComponent as LogOutIcon } from '../../assets/log-out.svg';
 import { Link } from 'react-router-dom';
+import { MouseEventHandler } from 'react';
 
-function NavItem({ text, icon, path, active }: Props) {
+function NavItem({ text, icon, path, active, setActive }: Props) {
+  console.log('navItem rendering...');
   return (
-    <Link to={path} className={text === 'Log Out' ? 'item-con1' : 'item-con'}>
+    <Link onClick={setActive} to={path} className={text === 'Log Out' ? 'item-con1' : 'item-con'}>
       {text === 'Log Out' ? (
         <LogOutIcon style={{ marginRight: 15 }} />
       ) : (
@@ -22,10 +24,10 @@ function NavItem({ text, icon, path, active }: Props) {
 interface Props {
   text: string;
   icon?: string;
-  navigate: Function;
   index?: number;
-  active?: boolean;
   path: string;
+  active?: boolean;
+  setActive?: MouseEventHandler<HTMLAnchorElement>;
 }
 
 export default NavItem;

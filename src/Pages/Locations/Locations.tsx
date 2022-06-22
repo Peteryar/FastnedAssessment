@@ -1,10 +1,10 @@
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { useContext } from 'react';
 import Store from '../../contexts/Store';
-import Button from '../Button/Button';
-import TableHead from '../Table/components/TableHead/TableHead';
-import { TableItems, Item } from '../Table/components/TableItems/TableItems';
-import Table from '../Table/Table';
+import Button from '../../components/Button/Button';
+import TableHead from '../../components/Table/components/TableHead/TableHead';
+import { TableItems, Item } from '../../components/Table/components/TableItems/TableItems';
+import Table from '../../components/Table/Table';
 import './styles.css';
 
 function Locations() {

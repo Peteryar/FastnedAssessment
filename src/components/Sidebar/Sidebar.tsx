@@ -4,18 +4,8 @@ import { ReactComponent as Logo } from '../../assets/logo.svg';
 import NavItem from '../NavItem/NavItem';
 import './styles.css';
 
-function Sidebar({ showSidebar, closeSidebar }: Props) {
+function Sidebar({ showSidebar }: Props) {
   const [active, setActive] = useState(0);
-
-  const navigate = (path: number) => {
-    setActive(path);
-    closeSidebar();
-  };
-
-  const logout = () => {
-    //handle logout
-    console.log('logging out...');
-  };
 
   const items = [
     { name: 'Locations', icon: 'where_to_vote', path: '/locations' },
@@ -33,9 +23,9 @@ function Sidebar({ showSidebar, closeSidebar }: Props) {
         </Link>
         {items.map((item, i) => (
           <NavItem
+            setActive={() => setActive(i)}
+            active={active == i ? true : false}
             path={item.path}
-            active={active === i ? true : false}
-            navigate={(path: number) => navigate(path)}
             key={i}
             index={i}
             text={item.name}
@@ -44,7 +34,7 @@ function Sidebar({ showSidebar, closeSidebar }: Props) {
         ))}
       </div>
       <div>
-        <NavItem path="" text="Log Out" navigate={logout} />
+        <NavItem path="" text="Log Out" />
       </div>
     </div>
   );

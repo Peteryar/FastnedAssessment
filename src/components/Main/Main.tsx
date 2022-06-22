@@ -1,7 +1,7 @@
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import { ContextContainer } from '../../contexts/Store';
-import Location from '../Location/Location';
-import Locations from '../Locations/Locations';
+import Location from '../../Pages/Location/Location';
+import Locations from '../../Pages/Locations/Locations';
 import './styles.css';
 // import { LocationType } from '../../utils/types';
 // import { useState } from 'react';

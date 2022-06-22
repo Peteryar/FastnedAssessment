@@ -73,8 +73,8 @@ function AddCharger({ hideModal, addCharger, charger, updateCharger }: Props) {
           />
         </form>
         <section className="add-charger-btm">
-          <Button text="Save" handleClick={handleSubmit(onSubmit)} />
-          <Button color="#e2e2e2" text="Cancel" handleClick={hideModal} />
+          <Button margin={10} text="Save" handleClick={handleSubmit(onSubmit)} />
+          <Button margin={10} color="#e2e2e2" text="Cancel" handleClick={hideModal} />
         </section>
       </div>
     </Modal>

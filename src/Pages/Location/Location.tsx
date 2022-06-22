@@ -1,8 +1,8 @@
-import Chargers from '../Chargers/Chargers';
-import AddLocation from '../AddLocation/AddLocation';
-import Button from '../Button/Button';
+import Chargers from '../../components/Chargers/Chargers';
+import AddLocation from '../../components/AddLocation/AddLocation';
+import Button from '../../components/Button/Button';
 import './styles.css';
-import AddCharger from '../AddCharger/AddCharger';
+import AddCharger from '../../components/AddCharger/AddCharger';
 import { useCallback, useContext, useState } from 'react';
 import { ChargerType, LocationInputType, LocationType } from '../../utils/types';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -91,8 +91,8 @@ function Location() {
         className="location-button-con">
         {state.from === 'Edit_View_Screen' && (
           <Button
+            color="#e2e2e2"
             icon="close"
-            color="gray"
             width={200}
             height={30}
             text="Remove Location"
